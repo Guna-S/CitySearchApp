@@ -12,7 +12,6 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class CityRequestDTO {
     private String start;
-    private Integer atmost;
-
+    private int atmost;
 
 }

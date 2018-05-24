@@ -1,7 +1,8 @@
 package com.hid.citysearch.service
 
 import com.hid.citysearch.domain.City
-
+import com.hid.citysearch.domain.CityRequestDTO
+import io.vavr.collection.List
 import spock.lang.Specification
 import spock.lang.Subject
 
@@ -14,17 +15,29 @@ class DefaultCityServiceSpec extends Specification {
     CityService service
 
     def setup() {
-        service = new DefaultCityService([])
+        service = new DefaultCityService(buildCities())
     }
 
     def "SearchCities"() {
-
         when:
-        def result = service.searchCities("che","3")
+        def result = service.searchCities(new CityRequestDTO(start: start, atmost: atmost))
 
         then:
-        repo.findByNameContainingOrderByNameAsc({it == "che"}) >> [City.builder().name("chennai").build()]
+        result == expected
 
-        result == "chennai"
+        where:
+        start | atmost | expected
+        "che" | 3      | "CHENNAI\nCHENGALPATTU"
+        "che" | 1      | "CHENNAI"
+        ""    | 1      | ""
+        "kan" | 10     | ""
+    }
+
+
+    def static buildCities() {
+
+        List.of("CHENNAI", "VADAPALANI", "MADURAI", "CHENGALPATTU")
+                .map({ city -> City.builder().name(city).build() })
+
     }
 }

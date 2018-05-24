@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * @author rmurugaian 2018-05-24
  */
-@Builder(toBuilder = true)
+@Builder
 @Getter
 public class City {
 
