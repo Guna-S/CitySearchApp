@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface CityService {
 
-    List<City> searchCities(final String start, final String atmost);
+    String searchCities(final String start, final String atmost);
 }

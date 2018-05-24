@@ -4,7 +4,7 @@ import com.hid.citysearch.domain.City;
 import com.hid.citysearch.repository.CityRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author rmurugaian 2018-05-24
@@ -19,7 +19,13 @@ public class DefaultCityService implements CityService {
     }
 
     @Override
-    public List<City> searchCities(final String start, final String atmost) {
-        return cityRepository.findAll();
+    public String searchCities(final String start, final String atmost) {
+
+        return cityRepository.findByNameContainingOrderByNameAsc(start)
+                .stream()
+                .filter(city -> city.getName().toLowerCase().startsWith(start.toLowerCase()))
+                .limit(Long.valueOf(atmost))
+                .map(City::getName)
+                .collect(Collectors.joining("\n"));
     }
 }
