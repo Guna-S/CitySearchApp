@@ -1,9 +1,10 @@
 package com.hid.citysearch.service;
 
 import com.hid.citysearch.domain.City;
-import com.hid.citysearch.repository.CityRepository;
+import com.hid.citysearch.domain.CityRequestDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -12,19 +13,19 @@ import java.util.stream.Collectors;
 @Service
 public class DefaultCityService implements CityService {
 
-    private final CityRepository cityRepository;
+    private final List<City> cities;
 
-    public DefaultCityService(final CityRepository cityRepository) {
-        this.cityRepository = cityRepository;
+    public DefaultCityService(final List<City> cities) {
+        this.cities = cities;
     }
 
     @Override
-    public String searchCities(final String start, final String atmost) {
+    public String searchCities(final CityRequestDTO cityRequestDTO) {
 
-        return cityRepository.findByNameContainingOrderByNameAsc(start)
+        return cities
                 .stream()
-                .filter(city -> city.getName().toLowerCase().startsWith(start.toLowerCase()))
-                .limit(Long.valueOf(atmost))
+                .filter(city -> city.getName().startsWith(cityRequestDTO.getStart().toUpperCase()))
+                .limit(cityRequestDTO.getAtmost())
                 .map(City::getName)
                 .collect(Collectors.joining("\n"));
     }
