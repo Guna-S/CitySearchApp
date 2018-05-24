@@ -1,5 +1,6 @@
 package com.hid.citysearch.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@EqualsAndHashCode
 public class CityRequestDTO {
     private String start;
     private Integer atmost;
