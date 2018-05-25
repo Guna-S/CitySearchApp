@@ -29,7 +29,6 @@ class DefaultCityServiceSpec extends Specification {
         start | atmost | expected
         "che" | 3      | "CHENNAI\nCHENGALPATTU"
         "che" | 1      | "CHENNAI"
-        ""    | 1      | ""
         "kan" | 10     | ""
     }
 
