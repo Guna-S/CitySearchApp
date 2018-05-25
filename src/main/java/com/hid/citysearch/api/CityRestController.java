@@ -22,7 +22,7 @@ public class CityRestController {
         this.cityService = cityService;
     }
 
-    @GetMapping(value = "/suggest_cities", produces = MediaType.TEXT_PLAIN_VALUE)
+    @GetMapping(value = "/suggest_cities")
     public String suggestCities(final CityRequestDTO cityRequestDTO) {
 
         if (StringUtils.isEmpty(cityRequestDTO.getStart())) {
