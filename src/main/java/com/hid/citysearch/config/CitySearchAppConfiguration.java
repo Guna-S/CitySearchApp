@@ -16,7 +16,7 @@ import java.nio.file.Paths;
  * Created by rmurugaian on 5/24/2018.
  */
 @Configuration
-public class CitySearchConfiguration {
+public class CitySearchAppConfiguration {
 
     /**
      * We can also use database instead of this list.
