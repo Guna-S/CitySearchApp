@@ -4,7 +4,6 @@ import com.hid.citysearch.domain.CityRequestDTO;
 import com.hid.citysearch.exception.BadRequestException;
 import com.hid.citysearch.service.CityService;
 import io.swagger.annotations.Api;
-import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
