@@ -18,6 +18,11 @@ import java.nio.file.Paths;
 @Configuration
 public class CitySearchConfiguration {
 
+    /**
+     * We can also use database instead of this list.
+     * insert all the cities name into database and query the same.
+     * for simplicity i have used list here.
+     */
     @Bean
     public List<City> cities(@Value("${city.input}") Resource resource) throws Exception {
 
