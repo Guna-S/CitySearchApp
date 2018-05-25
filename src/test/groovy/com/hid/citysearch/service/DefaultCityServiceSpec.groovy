@@ -2,9 +2,10 @@ package com.hid.citysearch.service
 
 import com.hid.citysearch.domain.City
 import com.hid.citysearch.domain.CityRequestDTO
-import io.vavr.collection.List
 import spock.lang.Specification
 import spock.lang.Subject
+
+import java.util.stream.Collectors
 
 /**
  * Created by rmurugaian on 5/24/2018.
@@ -35,8 +36,10 @@ class DefaultCityServiceSpec extends Specification {
 
     def static buildCities() {
 
-        List.of("CHENNAI", "VADAPALANI", "MADURAI", "CHENGALPATTU")
+        ["CHENNAI", "VADAPALANI", "MADURAI", "CHENGALPATTU"]
+                .stream()
                 .map({ city -> City.builder().name(city).build() })
+                .collect(Collectors.toList())
 
     }
 }

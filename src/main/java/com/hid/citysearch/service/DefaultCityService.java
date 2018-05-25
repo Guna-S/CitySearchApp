@@ -2,10 +2,10 @@ package com.hid.citysearch.service;
 
 import com.hid.citysearch.domain.City;
 import com.hid.citysearch.domain.CityRequestDTO;
-import io.vavr.collection.List;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -29,8 +29,9 @@ public class DefaultCityService implements CityService {
     public String searchCities(final CityRequestDTO cityRequestDTO) {
 
         return cities
+                .stream()
                 .filter(city -> city.getName().startsWith(cityRequestDTO.getStart().toUpperCase()))
-                .slice(0, cityRequestDTO.getAtmost())
+                .limit(cityRequestDTO.getAtmost())
                 .map(City::getName)
                 .collect(Collectors.joining("\n"));
     }

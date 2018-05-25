@@ -1,7 +1,6 @@
 package com.hid.citysearch
 
 import com.hid.citysearch.domain.City
-import io.vavr.collection.List
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.context.WebApplicationContext
 
